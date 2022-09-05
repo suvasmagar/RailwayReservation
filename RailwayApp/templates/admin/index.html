@@ -1,0 +1,22 @@
+{%extends 'admin/adminBase.html'%}
+
+{% block main %}
+
+<div class="row">
+    <div class="card" style="width: 15rem;height: 10rem;">
+      <div class="card-body">
+        <h5 class="card-title"><b>Pending Booking Requests</b></h5>
+        <span id="userCount" style="font-size: 60px;">{{pending}}</span>
+      </div>
+    </div>
+  &nbsp &nbsp &nbsp
+    <div class="card" style="width: 15rem;height: 10rem;">
+      <div class="card-body">
+        <h5 class="card-title"><b>Booked Ticket</b></h5>
+        <span id="quesCount" style="font-size: 60px;">{{booked}}</span>    
+        {% comment %} <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{%extends 'users/base.html'%}
+{% load static %}
+
+{% block main %}
+<div class="container">
+<h1 class="pt-2">Available Trains</h1> 
+    <div class="row pt-2">
+      {% for value in data %}
+        <div class="col-md-4">
+          <div class="card border-0">
+            <img src="https://www.energeticthemes.com/templates/sanat/assets/images/home/h2.jpg">
+      <a href="{% url 'getDashDetails' value.id %}" class="new" style="text-decoration: none; color: inherit;">
+            <div class="p-4">
+              <h4>{{value.name}}</h4>
+              <p class="qwerty">Route: {{value.fromAddress}} To {{value.toAddress}}</p>
+              <p class="qwerty">Price: Rs {{value.price}}</p>
+              <p class="qwerty">Time: {{value.duration}}</p>
+              {% comment %} <p class="qwerty">Date: {{value.date}}</p> {% endcomment %}
+              <p class="qwerty">Time: {{value.time}}</p>
+            </div> 
+          </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

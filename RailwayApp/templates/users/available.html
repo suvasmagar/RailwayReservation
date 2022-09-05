@@ -1,0 +1,34 @@
+{%extends 'users/userBase.html'%}
+{% load static %}
+
+{% block main %}
+
+<div class="container">
+    {% comment %} <h5 class="text-secondary">Available Trains </h5> {% endcomment %}
+    <h1 class="pt-5">Available Trains</h1> 
+    <hr>
+    <div class="row pt-5">
+      {% for value in data %}
+        <div class="col-md-4">
+          <div class="card border-0">
+            {% comment %} {% with "images/img"|add:"1"|add:".jpg" as image_static %}
+              <img src="{% static image_static %}""/>
+            {% endwith %} {% endcomment %}
+            <img src="https://www.energeticthemes.com/templates/sanat/assets/images/home/h2.jpg">
+      <a href="{% url 'getDetails' value.id %}" class="new" style="text-decoration: none; color: inherit;">
+            <div class="p-4">
+              <h4>{{value.name}}</h4>
+              <p class="qwerty">Route: {{value.fromAddress}} To {{value.toAddress}}</p>
+              <p class="qwerty">Price: Rs {{value.price}}</p>
+              <p class="qwerty">Time: {{value.duration}}</p>
+              <p class="qwerty">Date: {{value.date}}</p>
+              <p class="qwerty">Time: {{value.time}}</p>
+            </div> 
+          </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

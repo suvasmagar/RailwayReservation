@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+h1, h2, h3, h4, h5 {
+  font-weight: 800; }
+
+body {
+  font-family: 'Mulish', sans-serif; }
+
+.container {
+  max-width: 1280px;
+  margin: auto; }
+
+.navbar-light .navbar-nav .nav-link {
+  color: #1c1d1e;
+  font-weight: 725;
+  padding: 25px;
+  font-size: 17px; }
+  .navbar-light .navbar-nav .nav-link:hover {
+    border-bottom: 2px solid #1c1d1e; }
+
+.ownbtn {
+  font-weight: 800;
+  line-height: 1.7;
+  padding: .85rem 2.2rem;
+  font-size: 1.125rem;
+  border-radius: 4rem; }
+  .ownbtn:hover {
+    background: #ffda00;
+    border-color: #ffda00;
+    color: #1c1d1e; }
+
+.banner {
+  background: url('1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 550px; }
+  .banner .width-40 {
+    width: 40%;
+    padding: 100px 0px; 
+    float: right;}
+  .banner .text-school-yellow {
+    color: #ffda00; }
+  .banner .text-silver {
+    color: #f4f4f4; }
+
+.about {
+  background: #f4f4f4;
+  padding: 70px 0px; }
+
+.goal {
+  background: url('img3.jpg');
+  height: 500px;
+  background-position: center;
+  background-size: cover; }
+
+.width-40 {
+  width: 500px;
+  padding: 100px 0px; }
+
+.text-school-yellow {
+  color: #ffda00; }
+
+.text-silver {
+  color: #f4f4f4; }
+
+.top {
+  padding-top: 140px;
+  padding-left: 320px; }
+
+.qwerty{
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=style.css.map */

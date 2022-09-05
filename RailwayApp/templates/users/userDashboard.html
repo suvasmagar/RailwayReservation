@@ -1,0 +1,22 @@
+{%extends 'users/base.html'%}
+
+{% block main %}
+<input hidden type="text" id="verified" value={{verified}}>
+
+{% comment %} <div class="row">
+    <div class="card" style="width: 15rem;height: 10rem;">
+      <div class="card-body">
+        <h5 class="card-title"><b>Pending Booking Requests</b></h5>
+        <span id="userCount" style="font-size: 60px;">{{pending}}</span>
+      </div>
+    </div>
+  &nbsp &nbsp &nbsp
+    <div class="card" style="width: 15rem;height: 10rem;">
+      <div class="card-body">
+        <h5 class="card-title"><b>Booked Ticket</b></h5>
+        <span id="quesCount" style="font-size: 60px;">{{booked}}</span>    
+      </div>
+    </div>
+  </div> {% endcomment %}
+
+{% endblock %}

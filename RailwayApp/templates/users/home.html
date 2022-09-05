@@ -1,0 +1,73 @@
+{%extends 'users/userBase.html'%}
+{% load static %}
+
+{% block main %}
+
+<!-- BODY PART 1 -->
+<section class="banner">
+  <div class="container">
+    <div class="width-40">
+   <h5 class="text-school-yellow">We are</h5>
+     <h1 class="text-white mb-4 fw-bold">Giving The Best Railway Service In The Country</h1>
+     <p class="text-silver mb-4">You can make the reservation easily to go places through us. We faciliate the passengers to enquiry about the trains available on the basis of source and destination, booking and cancellation of tickets, enquiry about the status of the booked ticket, etc.
+     </p>
+     <a class="btn btn-outline-light ownbtn" href="{% url 'aboutUs' %}">Read more</a>
+     <button class="btn btn-outline-warning ownbtn">Contact us</button>
+   </div>
+ </div> 
+ </section>
+
+<div class="container">
+    {% comment %} <h5 class="text-secondary">Available Trains </h5> {% endcomment %}
+    <h1 class="pt-5">Available Trains</h1> 
+    <div class="row pt-5">
+      {% for value in data %}
+        <div class="col-md-4">
+          <div class="card border-0">
+            {% comment %} {% with "images/img"|add:"1"|add:".jpg" as image_static %}
+              <img src="{% static image_static %}""/>
+            {% endwith %} {% endcomment %}
+            <img src="https://www.energeticthemes.com/templates/sanat/assets/images/home/h2.jpg">
+      <a href="{% url 'getDetails' value.id %}" class="new" style="text-decoration: none; color: inherit;">
+            <div class="p-4">
+              <h4>{{value.name}}</h4>
+              <p class="qwerty">Route: {{value.fromAddress}} To {{value.toAddress}}</p>
+              <p class="qwerty">Price: Rs {{value.price}}</p>
+              <p class="qwerty">Time: {{value.duration}}</p>
+              {% comment %} <p class="qwerty">Date: {{value.date}}</p> {% endcomment %}
+              <p class="qwerty">Time: {{value.time}}</p>
+            </div> 
+          </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+<!-- BODY PART 4 -->
+<section class="goal">
+  <div class="container" id="ourGoals">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="width-40">
+          <h5 class="text-school-yellow">Our goals</h5>
+            <h2 class="text-white mb-4 fw-bold">Our not-so-secret plan: Provide Railway Service For All</h2>
+            <p class="text-silver mb-4">We faciliate the passengers to enquiry about the trains available on the basis of source and destination, booking and cancellation of tickets, enquiry about the status of the booked ticket, etc. 
+            </p>
+            <button class="btn btn-outline-warning ownbtn">Learn more</button>
+          </div>
+      </div>
+      {% comment %} <div class="top col-md-6 text-start">
+        <h1 class="text-school-yellow">$443 Billion</h1>
+        <p class="text-white mb-4">Creating 97 million tons of steel.<br><br>
+        Consetetur sadipscing elitr, sed<br> diam nonumy eirmod tempor<br>
+         invidunt ut labore
+        </p>
+      </div> {% endcomment %}
+    </div>
+  </div>
+</section>
+<!-- BODY PART 4 CLOSE -->
+
+
+{% endblock %}

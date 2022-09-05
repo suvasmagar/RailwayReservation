@@ -1,0 +1,296 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+    
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/admin/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/admin/style-responsive.css' %}" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+  </head>
+  <body>
+    <section id="container">
+
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
+            <!--logo start-->
+            <a href="" class="logo"><b>Railway Enq<span>uiry System</span></b></a>
+            {% comment %} <a href="" class="logo"><span>Welcome {{username}}</span></a> {% endcomment %}
+            
+            <!--logo end-->
+
+            <div class="top-menu">
+                <ul class="nav pull-right top-menu" style="margin-top: 17px;">
+                    <li><a class="logout" href="{% url 'userlogout' %}">LOGOUT</a></li>
+                </ul>
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <p class="centered"><a href=""><img src="{% static 'images/admin.jpg' %}" class="img-circle" width="80"></a></p>
+                    <h5 class="centered">Welcome {{username}}</h5>
+                    <li class="mt">
+                        <a class="active" href="{% url 'userDashboard' %}">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="{% url 'booktrains' %}">
+                            <i class="fa fa-desktop"></i>
+                            <span>Available Trains</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu">
+                      <a href="{% url 'userProfile' %}">
+                          <i class="fa fa-desktop"></i>
+                          <span>Profile</span>
+                      </a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="{% url 'userBooking' %}">
+                            <i class="fa fa-desktop"></i>
+                            <span>My Bookings</span>
+                        </a>
+                      </li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="container">
+
+                    {% block main %}
+                
+                    {% endblock %}
+                
+                </div>
+                <!-- /row -->
+            </section>
+        </section>
+        <!--main content end-->
+
+    </section>
+
+  </body>
+    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready( function () {
+        //$('#').DataTable();
+        $('#seat').select2();
+
+        verified = $('#verified').val();
+        checkEmailVerify(verified);
+    } );
+
+    function checkEmailVerify(verified)
+    {
+      if(verified == "False"){
+        $("#verification").text("Not Verified");
+        $("#verification").css("color", "red");
+      }
+      else{
+        $("#verification").text("Verified");
+        $("#verification").css("color", "green");
+        $('#verification').off('click'); //disables click event
+      }
+    }
+
+
+    function isTicketAvailable(railId)
+    {
+      debugger;
+      if(verified == "False"){
+        alert("Email Not Verified!!")
+      }
+      else{
+        date = $('#date').val();
+      var mySelections = [];
+        $('#seat option').each(function(i) {
+                if (this.selected == true) {
+                        mySelections.push(this.value);
+                }
+        });
+        var abc = mySelections;
+      $.ajax({
+          url: '{% url 'isTicketAvailable' %}',
+          type: "GET",
+          dataType: 'json',
+          data : {
+            'railId' : railId,
+            'selected': mySelections,
+            'date': date
+          },
+          contentType: "application/json",
+          success: function (data) {
+            debugger;
+            if(data.data.length !== 0){
+              $.each(data.data, function(k, v) {
+                debugger;
+                alert("Seat Number " + data.data[k] + " is already booked. Please choose another seat.")
+              });
+            }
+            else{
+              checkTicket(railId, date)
+            }
+          }
+        });
+      }
+    }
+
+
+    function checkTicket(railId, date)
+    {
+      debugger;
+      var mySelections = [];
+        $('#seat option').each(function(i) {
+                if (this.selected == true) {
+                        mySelections.push(this.value);
+                }
+        });
+        var abc = mySelections;
+      $.ajax({
+          url: '{% url 'checkTicket' %}',
+          type: "GET",
+          dataType: 'json',
+          data : {
+            'railId' : railId,
+            'selected': mySelections,
+            'date': date
+          },
+          contentType: "application/json",
+          success: function (data) {
+            debugger;
+            $('#date').val('');
+            $('#seat').val("0").select2();
+            console.log(data.data)
+            bookTicket(railId, date)
+          }
+        });
+    }
+
+
+    function bookTicket(railId, date)
+    {
+      debugger;
+      $.ajax({
+          url: '{% url 'bookTicket' %}',
+          type: "GET",
+          dataType: 'json',
+          data : {
+            'railId' : railId,
+            'date': date
+          },
+          contentType: "application/json",
+          success: function (data) {
+            debugger;
+            if(data.data == "Success")
+            {
+              alert('Your booking request have been placed. Check your email for confirmation.')
+            }
+            else{
+              alert('You must be logged in to book ticket.')
+              //window.location.href= "users/login.html";
+            }
+          }
+        });
+    }
+
+
+    function sendEmail(email, code)
+    {
+      $.ajax({
+          url: '{% url 'sendVerifyEmail' %}',
+          data: {
+            'email': email,
+            'code': code
+          },
+          type: "GET",
+          dataType: 'json',
+          contentType: "application/json",
+          success: function (data) {
+              alert("Check your email for verification code");
+          }
+        });
+    }
+
+    $("#verification").click(function () {
+      debugger;
+      email = $("#email").text();
+      $('#myModal').modal('show');
+      code = Math.floor(Math.random()*90000) + 10000;
+      sendEmail(email, code);
+      localStorage.setItem("code",code);
+    });
+
+    function verifyCode()
+    {
+      debugger;
+      code = localStorage.getItem("code");
+      email = $("#verifyCode").val();
+      if(code == email){
+        $('#myModal').modal('hide');
+        updateVerifyStatus();
+      }
+      else{
+        alert('Invalid Verification Code!!')
+      }
+    }
+
+    function updateVerifyStatus()
+    {
+      $.ajax({
+        url: '{% url 'updateVerifyStatus' %}',
+        type: "GET",
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (data) {
+          if(data.data == "Success"){
+            debugger;
+            alert('Email Verified!!');
+            $("#verification").text("Verified");
+            $("#verification").css("color", "green");
+            $('#verification').off('click'); //disables click event
+          }
+          else{
+            alert("Error");
+            $("#verification").text("Not Verified");
+            $("#verification").css("color", "red");
+          }
+        }
+      });
+    }
+
+</script>

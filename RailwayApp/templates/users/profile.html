@@ -1,0 +1,83 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block main %}
+<input hidden type="text" id="verified" value={{verified}}>
+<div class="row">
+    <div class="col-lg-4">
+    <div class="card mb-4" style="height: 350px;">
+        <div class="card-body text-center">
+        <img src="{% static data.image_url %}" alt="avatar" class="rounded-circle img-fluid" style="width: 250px; height:230px">
+        <h5 class="my-3">{{data.firstname}} {{data.lastname}}</h5>
+        <p class="text-muted mb-1">{{data.email}}</p>
+        {% comment %} <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> {% endcomment %}
+
+        </div>
+    </div>
+    </div>
+    <div class="col-lg-8">
+    <div class="card mb-4" style="height: 280px;">
+        <div class="card-body">
+        <div class="row">
+            <div class="col-sm-3">
+            <p class="mb-0">Full Name</p>
+            </div>
+            <div class="col-sm-9">
+            <p class="text-muted mb-0">{{data.firstname}} {{data.lastname}}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+            <p class="mb-0">Username</p>
+            </div>
+            <div class="col-sm-9">
+            <p class="text-muted mb-0">{{data.username}}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+            <p class="mb-0">Email</p>
+            </div>
+            <div class="col-sm-9 d-flex justify-content-between">
+            <p class="text-muted mb-0" id="email">{{data.email}}</p><span id="verification" style="cursor: pointer;"></span>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+            <p class="mb-0">Mobile</p>
+            </div>
+            <div class="col-sm-9">
+            <p class="text-muted mb-0">{{data.contact}}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% comment %} verification modal {% endcomment %}
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Email Verification</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <label>Verification Code:</label>
+          <input type="text" id="verifyCode">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="verifyCode()">Submit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

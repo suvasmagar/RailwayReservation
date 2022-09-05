@@ -1,0 +1,42 @@
+{%extends 'admin/adminBase.html'%}
+
+{% block main %}
+
+{% comment %} <h3>Show Questions</h3> {% endcomment %}
+        <table border="1" class="table table-bordered table-striped table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th>S.N</th>
+                    <th>Train Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Date</th>
+                    <th>Seat No.</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="booking">
+               {% comment %} {% for value in data %}
+                     <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{value.railName}}</td>
+                        <td>{{value.fromAddress}}</td>
+                        <td>{{value.toAddress}}</td>
+                        <td>{{value.fullname}}</td>
+                        <td>{{value.username}}</td>
+                        <td>{{value.email}}</td>
+                        <td>{{value.contact}}</td>
+                        <td>{{value.date}}</td>
+                        <td>
+                            <a href="{% url 'approveMyBooking' value.id %}" class="btn btn-primary">Approve</a>
+                        </td>
+                    </tr> 
+                {% endfor %}{% endcomment %}
+            </tbody>
+        </table>
+
+{% endblock %}

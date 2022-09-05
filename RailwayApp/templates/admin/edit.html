@@ -1,0 +1,37 @@
+{%extends 'admin/adminBase.html'%}
+
+{% block main %}
+
+<form action="{% url 'updateRail' %}"   method="POST" class="form-group"> 
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ data.id }}">
+    <br>
+    <label for="question"><b>Name</b></label>
+    <input type="text" name="name" value="{{ data.name }}" class="form-control">
+    <br>
+    <label for="option1"><b>From</b></label>
+    <input type="text" name="fromAddress" value="{{ data.fromAddress }}" class="form-control">
+    <br>
+    <label for="option2"><b>To</b></label>
+    <input type="text" name="toAddress" value="{{ data.toAddress }}" class="form-control">
+    <br>
+    <label for="option3"><b>Price</b></label>
+    <input type="text" name="price" value="{{ data.price }}" class="form-control">
+    <br>
+    <label for="option4"><b>Duration</b></label>
+    <input type="text" name="duration" value="{{ data.duration }}" class="form-control">
+    <br>
+    <label for="correctAns"><b>Date</b></label>
+    <input type="text" name="date" value="{{ data.date }}" class="form-control">
+    <br>
+    <label for="correctAns"><b>Time</b></label>
+    <input type="text" name="time" value="{{ data.time }}" class="form-control">
+    <br>
+    <!-- <input type="submit" value="UPDATE" class="btn btn-primary"> -->
+    <button type="submit" class="btn btn-primary">Update</button>
+    <!-- <a href="{% url 'updateRail' %}" class="btn btn-primary">Update</a><br> -->
+    <a href="{% url 'showRails' %}" class="btn btn-primary">Back</a><br>
+    {{msg}}
+</form>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{%extends 'users/base.html'%}
+{% load static %}
+
+{% block main %}
+<input hidden type="text" id="verified" value={{verified}}>
+    <div class="container">
+        <h1>{{data.name}}</h1>
+        <div class="row">
+            <div class="col-md-6 slider-sec">
+                <!-- main slider carousel -->
+                <div id="myCarousel" class="carousel slide">
+                    <!-- main slider carousel items -->
+                    <div class="carousel-inner">
+                        <div class="active item carousel-item" data-slide-number="0">
+                            <img src="https://www.energeticthemes.com/templates/sanat/assets/images/home/h2.jpg" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <!--/main slider carousel-->
+            </div>
+            <div class="col-md-6 slider-content">
+                <h4>{{data.name}}</h4>
+                <p class="qwerty">Route: {{data.fromAddress}} To {{data.toAddress}}</p>
+                <p class="qwerty">Price: Rs {{data.price}}</p>
+                <p class="qwerty">Time: {{data.duration}}</p>
+                {% comment %} <p class="qwerty">Date: {{data.date}}</p> {% endcomment %}
+                <p class="qwerty">Time: {{data.time}}</p>
+
+                <div class="btn-sec">
+                    {% comment %} <button class="btn btn-primary" onclick="bookTicket({{data.id}})">Book Ticket</button> {% endcomment %}
+                    {% comment %} <button class="btn btn-primary" id="showOptions">Book Ticket</button> {% endcomment %}
+                    <div id="seatDiv" class="row"> 
+                    <div class="col-sm-3">
+                        <label for="cars">Choose Seats:</label>
+
+                        <select name="seat" id="seat" multiple>
+                        <option value="0" selected>Choose Seats</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        </select> 
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="cars">Choose Date:</label>
+                        <input type="date" id="date" name="date" placeholder="yyyy-mm-dd">
+                    </div>
+                </br>
+                </div>
+            </br>
+                    <button class="btn btn-primary" onclick="isTicketAvailable({{data.id}})">Book Ticket</button>
+                    {% comment %} <button class="btn btn-primary" onclick="isTicketAvailable({{data.id}})">Is Ticket Available</button> {% endcomment %}
+                </div>
+            </div>
+    </div>
+
+
+{% endblock %}
